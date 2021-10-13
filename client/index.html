@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONTROLLER</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    .container{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .container .text{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .container .text div{
+      margin: 10px;
+    }
+    .container .score{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container .score .team{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .container .score .team .text input{
+      font-size: 30px;
+      text-align: center;
+      width: 90px;
+      height: 90px;
+      margin: 10px;
+    }
+    .container .score .team .buttons{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .container .score .team .buttons button{
+      height: 70px;
+      width: 70px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="text">
+      <div class="left">LOCAL</div>
+      <div class="right">VISITANTE</div>
+    </div>
+    <div class="score">
+      <div class="local team">
+        <div class="buttons">
+          <button class="score_button" team="local" value="+1">+1</button>
+          <button class="score_button" team="local" value="-1">-1</button>
+        </div>
+        <div class="text">
+          <input id="local_score" type="text" value="0">
+        </div>
+      </div>
+      <div class="visitor team">
+        <div class="text">
+          <input id="visitor_score" type="text" value="0">
+        </div>
+        <div class="buttons">
+          <button class="score_button" team="visitor" value="+1">+1</button>
+          <button class="score_button" team="visitor" value="-1">-1</button>
+        </div>
+      </div>
+    </div>
+    <div class="tiros">
+      <div class="local">
+        <input type="number" value="0">
+        <input type="number" value="0">
+        <input type="number" value="0">
+      </div>
+      <div class="visitor">
+        <input type="number" value="0">
+        <input type="number" value="0">
+        <input type="number" value="0">
+      </div>
+    </div>
+    <div class="time">
+      <div class="clock">
+        <button>START/STOP</button>
+        <input value="25:00">
+        <button>reset</button>
+      </div>
+      <div class="period">
+        <select id="cars">
+          <option>PER 1</option>
+          <option>DESCANSO</option>
+          <option>PER 2</option>
+          <option>DESCANSO PR</option>
+          <option>OT</option>
+          <option>DESCANSO PEN</option>
+          <option>PENALTIS</option>
+          <option>FINAL</option>
+        </select>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>
