@@ -25,7 +25,7 @@
       align-items: center;
       justify-content: center;
     }
-    .container .text{
+    .container .text,.container .text-small{
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -33,7 +33,10 @@
       font-size: 30px;
       font-weight: bold;
     }
-    .container .text div{
+    .container .text-small{
+      font-size: 20px;
+    }
+    .container .text div,.container .text-small div{
       margin: 10px;
     }
     .container .score{
@@ -66,6 +69,79 @@
       font-size: 30px;
       font-weight: bold;
     }
+    .container .tiros{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .container .tiros .team{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.number-input {
+  transform: scale(.8);
+  border: 2px solid #ddd;
+  display: inline-flex;
+}
+
+.number-input,
+.number-input * {
+  box-sizing: border-box;
+}
+
+.number-input button {
+  outline:none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 3rem;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+}
+
+.number-input button:before,
+.number-input button:after {
+  display: inline-block;
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 2px;
+  background-color: #212121;
+  transform: translate(-50%, -50%);
+}
+.number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.number-input input[type=number] {
+  font-family: sans-serif;
+  max-width: 5rem;
+  padding: .5rem;
+  border: solid #ddd;
+  border-width: 0 2px;
+  font-size: 2rem;
+  height: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
   </style>
 </head>
 <body>
@@ -73,6 +149,9 @@
     <div class="text">
       <div class="left">LOCAL</div>
       <div class="right">VISITANTE</div>
+    </div>
+    <div class="text-small">
+      <div class="left">GOLES</div>
     </div>
     <div class="score">
       <div class="local team">
@@ -94,23 +173,57 @@
         </div>
       </div>
     </div>
+    <div class="text-small">
+      <div class="left">TIROS</div>
+    </div>
     <div class="tiros">
-      <div class="local">
-        <input type="number" value="0">
-        <input type="number" value="0">
-        <input type="number" value="0">
+      <div class="local team">
+        <div class="number-input">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+        <div class="number-input">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+        <div class="number-input">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
       </div>
-      <div class="visitor">
-        <input type="number" value="0">
-        <input type="number" value="0">
-        <input type="number" value="0">
+      <div class="visitor team">
+        <div class="number-input">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+        <div class="number-input">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+        <div class="number-input">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
       </div>
+    </div>
+
+    <div class="text-small">
+      <div class="left">TIEMPO</div>
     </div>
     <div class="time">
       <div class="clock">
         <button>START/STOP</button>
         <input value="25:00">
         <button>reset</button>
+      </div>
+      <div class="text-small">
+        <div class="left">PERIODO</div>
       </div>
       <div class="period">
         <select id="cars">
