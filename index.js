@@ -32,7 +32,11 @@ var data={
       time:"",
     }
   },
-  situtation: "4 v 4"
+  situtation: "4 v 4",
+  saques:{
+    local:"",
+    visitante:""
+  }
 }
 
 app.get('/',(req,res)=>{
@@ -40,7 +44,7 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/json',(req,res)=>{
-  res.json(data);
+  res.json([data]);
 })
 
 app.post('/update',(req,res) => {

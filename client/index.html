@@ -253,7 +253,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="container">
     <div class="text">
@@ -353,6 +352,21 @@
         </select>
       </div>
       <div class="text-small">
+        <div class="left">SAQUES</div>
+      </div>
+      <div class="saques">
+        <div class="number-input">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+          <input id="saques_local" class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+        <div class="number-input">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+          <input class="quantity" id="saques_visitante" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+      </div>
+      <div class="text-small">
         <div class="left">FALTAS</div>
       </div>
       <div class="faults">
@@ -368,11 +382,40 @@
       </div>
 
     </div>
+   
     <script>
       function delete_fault(id) {
         document.querySelector(`#f${id}`).parentElement.parentElement.attributes['count'].value = Number(document
           .querySelector(`#f${id}`).parentElement.parentElement.attributes['count'].value) - 1
         document.querySelector(`#f${id}`).parentElement.remove(document.querySelector(`#f${id}`).parentElement)
+      }
+      async function state(local, visitor, period){
+        if (period == "PR"){
+          if((Number(local) == 1 || Number(visitor) == 1) && Number(local) != Number(visitor) && (Number(local) == 0 || Number(visitor) == 0)){
+            return "POWERPLAY"
+          }else if(Number(local) == 2 && Number(visitor) == 0){
+            return "2 vs 4"
+          }else if(Number(local) == 0 && Number(visitor) == 2){
+            return "4 vs 2"
+          }else{
+            return (3 - Number(visitor)) + " vs " + (3 - Number(local))
+          }
+        }else if(period == "1er" || period=="2do"){
+          if((Number(local) == 1 || Number(visitor) == 1) && Number(local) != Number(visitor) && (Number(local) == 0 || Number(visitor) == 0)){
+            return "POWERPLAY"
+          }else{
+            return (4 -Number(visitor)) + " vs "+ (4-Number(local) )
+          }
+        }else{
+          return "4 vs 4"
+        }
+/*false 
+  3 VS 3
+  POWERPLAY (2 VS 3, 3 VS 2)
+  2 VS 2
+  2 VS 4
+  4 VS 2*/
+
       }
       async function data() {
         var data = {
@@ -404,24 +447,17 @@
             "PR" ? "PRORROGA" : document.querySelector('#period_selector').value,
           power_play: {
             local: {
-              time: document.querySelector('#visitor_faults').children.length != 0 ?document.querySelector('#visitor_faults').lastChild.children[0].value : "", 
+              time: document.querySelector('#visitor_faults').children.length != 0 ?document.querySelector('#visitor_faults > .fault').children[0].value : "", 
             },
             visitor: {
-              time:document.querySelector('#local_faults').children.length != 0 ? document.querySelector('#local_faults').lastChild.children[0].value : "",
+              time:document.querySelector('#local_faults').children.length != 0 ? document.querySelector('#local_faults > .fault').children[0].value : "",
             }
           },
-          situtation: document.querySelector('#period_selector').value != 'PR' ? (4 - Number(document.querySelector(
-              '#local_faults').attributes['count'].value)) + " vs " + (4 - Number(document.querySelector(
-              '#visitor_faults').attributes['count'].value)) : Number(document.querySelector('#local_faults')
-              .attributes['count'].value) == 0 && Number(document.querySelector('#visitor_faults').attributes[
-              'count'].value) == 0 ? "3 vs 3" : Number(document.querySelector('#local_faults').attributes['count']
-              .value) == 1 && Number(document.querySelector('#visitor_faults').attributes['count'].value) == 0 ?
-            "2 vs 3" : Number(document.querySelector('#local_faults').attributes['count'].value) == 2 && Number(
-              document.querySelector('#visitor_faults').attributes['count'].value) == 0 ? "2 vs 4" : Number(document
-              .querySelector('#local_faults').attributes['count'].value) == 0 && Number(document.querySelector(
-              '#visitor_faults').attributes['count'].value) == 1 ? "3 vs 2" : Number(document.querySelector(
-              '#local_faults').attributes['count'].value) == 0 && Number(document.querySelector('#visitor_faults')
-              .attributes['count'].value) == 2 ? "4 vs 2" : "2 vs 2",
+          situtation: await state(document.querySelector('#visitor_faults').attributes['count'].value, document.querySelector('#local_faults').attributes['count'].value,document.querySelector('#period_selector').value),
+            saques:{
+              local:document.querySelector('#saques_local').value,
+              visitante:document.querySelector('#saques_visitante').value,
+            }
         }
         const req =  await fetch('/update', {
           method: 'POST',
@@ -507,3 +543,5 @@
 </body>
 
 </html>
+ 
+
