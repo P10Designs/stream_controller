@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CONTROLLER</title>
   <style>
-    *{
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    body{
+
+    body {
       background-color: #212121;
       color: #f2f2f2;
       width: 100vw;
@@ -19,7 +21,8 @@
       overflow: hidden;
       font-family: sans-serif;
     }
-    .container{
+
+    .container {
       width: 100%;
       height: 100%;
       display: flex;
@@ -27,7 +30,9 @@
       align-items: center;
       justify-content: center;
     }
-    .container .text,.container .text-small{
+
+    .container .text,
+    .container .text-small {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -35,62 +40,74 @@
       font-size: 30px;
       font-weight: bold;
     }
-    .container .text-small{
+
+    .container .text-small {
       font-size: 20px;
     }
-    .container .text div,.container .text-small div{
+
+    .container .text div,
+    .container .text-small div {
       margin: 10px;
     }
-    .container .score{
+
+    .container .score {
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .container .score .team{
+
+    .container .score .team {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
     }
-    .container .score .team .text input{
+
+    .container .score .team .text input {
       font-size: 30px;
       text-align: center;
       width: 90px;
       height: 90px;
       margin: 10px;
     }
-    .container .score .team .buttons{
+
+    .container .score .team .buttons {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    .container .score .team .buttons button{
+
+    .container .score .team .buttons button {
       margin: 2.5px 0;
       height: 70px;
       width: 70px;
       font-size: 30px;
       font-weight: bold;
     }
-    .container .tiros{
+
+    .container .tiros {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
     }
-    .container .tiros .badges{
+
+    .container .tiros .badges {
       display: flex;
       flex-direction: column;
       height: 90%;
       font-size: 20px;
       justify-content: space-between;
     }
-    .container .tiros .team{
+
+    .container .tiros .team {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
+
     input[type="number"] {
       -webkit-appearance: textfield;
       -moz-appearance: textfield;
@@ -114,7 +131,7 @@
     }
 
     .number-input button {
-      outline:none;
+      outline: none;
       -webkit-appearance: none;
       background-color: transparent;
       border: none;
@@ -137,6 +154,7 @@
       background-color: #f2f2f2;
       transform: translate(-50%, -50%);
     }
+
     .number-input button.plus:after {
       transform: translate(-50%, -50%) rotate(90deg);
     }
@@ -152,40 +170,86 @@
       font-weight: bold;
       text-align: center;
     }
-    .container .time{
+
+    .container .time {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    .container .time .clock{
+
+    .container .time .clock {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
     }
-    .container .time .clock button{
+
+    .container .time .clock button {
       text-transform: uppercase;
       height: 50px;
       width: 100px;
       font-weight: 900;
-      margin: 0 10px ;
+      margin: 0 10px;
     }
-    .container .time .clock input{
+
+    .container .time .clock input {
       font-size: 25px;
       text-align: center;
       height: 50px;
       width: 100px;
       font-weight: 900;
-      margin: 0 10px ;
+      margin: 0 10px;
     }
-    .container .time .period select{
+
+    .container .time .period select {
       font-size: 25px;
       text-align: center;
       height: 40px;
       width: auto;
       font-weight: 900;
-      margin: 0 10px ;
+      margin: 0 10px;
+    }
+
+    .container .time .faults {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container .time .faults .team {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .container .time .faults .team .fault {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .container .time .faults .team .fault input {
+      width: 80px;
+      height: 30px;
+      text-align: center;
+      font-weight: 800;
+      margin-right: 10px;
+    }
+
+    .container .time .faults #local_faults,
+    .container .time .faults #visitor_faults {
+      min-width: 140px;
+      margin: 10px;
+    }
+
+    .container .time .faults .buttons .add_faults {
+      width: 60px;
+      margin: 10px;
+      height: 30px;
     }
   </style>
 </head>
@@ -224,40 +288,40 @@
     <div class="tiros">
       <div class="badges">
         <div>PERIODO 1</div>
-        <div>PERIODO 1</div>
+        <div>PERIODO 2</div>
         <div>PRORROGA</div>
       </div>
       <div class="local team">
         <div class="number-input">
-          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+          <input id="tiros_local_p1" class="quantity" min="0" name="quantity" value="0" type="number">
           <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
         </div>
         <div class="number-input">
-          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+          <input id="tiros_local_p2" class="quantity" min="0" name="quantity" value="0" type="number">
           <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
         </div>
         <div class="number-input">
-          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+          <input id="tiros_local_p3" class="quantity" min="0" name="quantity" value="0" type="number">
           <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
         </div>
       </div>
       <div class="visitor team">
         <div class="number-input">
-          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+          <input id="tiros_visitor_p1" class="quantity" min="0" name="quantity" value="0" type="number">
           <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
         </div>
         <div class="number-input">
-          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+          <input id="tiros_visitor_p2" class="quantity" min="0" name="quantity" value="0" type="number">
           <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
         </div>
         <div class="number-input">
-          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-          <input class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+          <input class="quantity" id="tiros_visitor_p3" min="0" name="quantity" value="0" type="number">
           <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
         </div>
       </div>
@@ -276,104 +340,208 @@
         <div class="left">PERIODO</div>
       </div>
       <div class="period">
-        <select>
-          <option>PERIODO 1</option>
-          <option>DESCANSO</option>
-          <option>PERIODO 2</option>
-          <option>DESCANSO PR</option>
-          <option>PRORROGA</option>
-          <option>DESCANSO PEN</option>
-          <option>PENALTIS</option>
-          <option>FINAL</option>
+        <select id="period_selector">
+          <option value="1er">PERIODO 1</option>
+          <option value="DESCANSO">DESCANSO</option>
+          <option value="2do">PERIODO 2</option>
+          <option value="DESCANSO PR">DESCANSO PR</option>
+          <option value="PR">PRORROGA</option>
+          <option value="DESCANSO PENALTIS">DESCANSO PEN</option>
+          <option value="PEN">PENALTIS</option>
+          <option value="FINAL">FINAL</option>
         </select>
       </div>
+      <div class="text-small">
+        <div class="left">SAQUES</div>
+      </div>
+      <div class="saques">
+        <div class="number-input">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+          <input id="saques_local" class="quantity" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+        <div class="number-input">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+          <input class="quantity" id="saques_visitante" min="0" name="quantity" value="0" type="number">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+      </div>
+      <div class="text-small">
+        <div class="left">FALTAS</div>
+      </div>
       <div class="faults">
-        <div class="text-small">
-          <div class="left">FALTAS</div>
+        <div class="buttons">
+          <button class="add_faults" team="local">AÑADIR</button>
+          <button class="add_faults" team="visitor">AÑADIR</button>
         </div>
         <div class="local team">
-          <button class="add_faults" team="local">AÑADIR</button>
           <div id="local_faults" count="0"></div>
-        </div>
-        <div class="visitor team">
-          <button class="add_faults" team="visitor">AÑADIR</button>
           <div id="visitor_faults" count="0">
           </div>
         </div>
       </div>
+
     </div>
-    
-  </div>
-  <script>
-    function delete_fault(id){
-      document.querySelector(`#f${id}`).parentElement.parentElement.attributes['count'].value = Number(document.querySelector(`#f${id}`).parentElement.parentElement.attributes['count'].value) -1
-      document.querySelector(`#f${id}`).parentElement.remove(document.querySelector(`#f${id}`).parentElement)
-    }
-    document.body.onload = async () => {
-      document.querySelectorAll('.score_button').forEach(button =>{
-        button.addEventListener('click', ()=>{
-          const team = button.attributes['team'].value;
-          const value = button.attributes['value'].value;
-          if (document.querySelector(`#${team}_score`).value > 0 || value != '-1'){
-            document.querySelector(`#${team}_score`).value = Number(document.querySelector(`#${team}_score`).value)+ Number(value);
-          } 
-        })
-      })
-      document.querySelector('#time_toggle').addEventListener('click', ()=>{
-        if(document.querySelector('#time_toggle').attributes['value'].value == 'active') document.querySelector('#time_toggle').attributes['value'].value = 'paused'
-        else if(document.querySelector('#time_toggle').attributes['value'].value == 'paused') document.querySelector('#time_toggle').attributes['value'].value = 'active'
-      })
-      document.querySelector('#clock_reset').addEventListener('click', ()=>{
-        document.querySelector('#clock').value = "25:00";
-        document.querySelector('#time_toggle').attributes['value'].value = 'paused'
-      })
-      document.querySelectorAll('.add_faults').forEach((div)=>{
-        div.addEventListener('click',()=>{
-          const team = div.attributes['team'].value;
-          const count =document.querySelector(`#${team}_faults`).attributes['count'].value;
-          if (Number(document.querySelector(`#${team}_faults`).attributes['count'].value) < 2){
-            document.querySelector(`#${team}_faults`).innerHTML += `<div class="fault" team="${team}">
-              <input type="text" class="fault_time" moment="first" team="visitor" value="02:00">
-              <button onclick="delete_fault(${count})" id="f${count}"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="cross_fault"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg></button>
-            </div>` 
-            document.querySelector(`#${team}_faults`).attributes['count'].value = Number(document.querySelector(`#${team}_faults`).attributes['count'].value) +1
-          }
-        })
-      })
-      
-      
-      setInterval(()=>{
-        if (document.querySelector('#time_toggle').attributes['value'].value == "active"){
-          const time = document.querySelector('#clock').value.split(':')
-          if((Number(time[0]) + Number(time[1]) ) != 0){
-            if (time[1] > 0){
-              time[1] = Number(time[1]) - 1; 
-            }else {
-              time[1] = 59;
-              time[0] = Number(time[0]) -1;
-            }
-            
-            document.querySelector('#clock').value = `${time[0]}:${time[1]<10 ? "0"+time[1] : time[1]}`
+   
+    <script>
+      function delete_fault(id) {
+        document.querySelector(`#f${id}`).parentElement.parentElement.attributes['count'].value = Number(document
+          .querySelector(`#f${id}`).parentElement.parentElement.attributes['count'].value) - 1
+        document.querySelector(`#f${id}`).parentElement.remove(document.querySelector(`#f${id}`).parentElement)
+      }
+      async function state(local, visitor, period){
+        if (period == "PR"){
+          if((Number(local) == 1 || Number(visitor) == 1) && Number(local) != Number(visitor) && (Number(local) == 0 || Number(visitor) == 0)){
+            return "POWERPLAY"
+          }else if(Number(local) == 2 && Number(visitor) == 0){
+            return "2 vs 4"
+          }else if(Number(local) == 0 && Number(visitor) == 2){
+            return "4 vs 2"
           }else{
-            document.querySelector('#clock').value = "00:00"
+            return (3 - Number(visitor)) + " vs " + (3 - Number(local))
           }
-          document.querySelectorAll('.fault_time').forEach((div) => {
-            const time = div.value.split(':')
-            if((Number(time[0]) + Number(time[1]) ) != 0){
-              if (time[1] > 0){
-                time[1] = Number(time[1]) - 1; 
-              }else {
-                time[1] = 59;
-                time[0] = Number(time[0]) -1;
-              }
-              div.value = `0${Number(time[0])}:${time[1]<10 ? "0"+time[1] : time[1]}`
+        }else if(period == "1er" || period=="2do"){
+          if((Number(local) == 1 || Number(visitor) == 1) && Number(local) != Number(visitor) && (Number(local) == 0 || Number(visitor) == 0)){
+            return "POWERPLAY"
           }else{
-            div.parentElement.remove(div.parentElement)
+            return (4 -Number(visitor)) + " vs "+ (4-Number(local) )
           }
-          });
+        }else{
+          return "4 vs 4"
         }
-      },1000)
-    }
-  </script>
+/*false 
+  3 VS 3
+  POWERPLAY (2 VS 3, 3 VS 2)
+  2 VS 2
+  2 VS 4
+  4 VS 2*/
+
+      }
+      async function data() {
+        var data = {
+          goles: {
+            local: document.querySelector('#local_score').value,
+            visitante: document.querySelector('#visitor_score').value,
+          },
+          tiros: {
+            visistante: {
+              p1: document.querySelector('#tiros_visitor_p1').value,
+              p2: document.querySelector('#tiros_visitor_p2').value,
+              p3: document.querySelector('#tiros_visitor_p3').value,
+              total: Number(document.querySelector('#tiros_visitor_p1').value) + Number(document.querySelector(
+                '#tiros_visitor_p2').value) + Number(document.querySelector('#tiros_visitor_p3').value)
+            },
+            local: {
+              p1: document.querySelector('#tiros_local_p1').value,
+              p2: document.querySelector('#tiros_local_p2').value,
+              p3: document.querySelector('#tiros_local_p3').value,
+              total: Number(document.querySelector('#tiros_local_p1').value) + Number(document.querySelector(
+                '#tiros_local_p2').value) + Number(document.querySelector('#tiros_local_p3').value)
+            }
+          },
+          time: document.querySelector('#clock').value,
+          period_small: document.querySelector('#period_selector').value,
+          period_big: document.querySelector('#period_selector').value == '1er' ? "PERIODO 1" : document
+            .querySelector('#period_selector').value == '2do' ? "PERIODO 2" : document.querySelector(
+              '#period_selector').value == 'PEN' ? "PENALTIS" : document.querySelector('#period_selector').value ==
+            "PR" ? "PRORROGA" : document.querySelector('#period_selector').value,
+          power_play: {
+            local: {
+              time: document.querySelector('#visitor_faults').children.length != 0 ?document.querySelector('#visitor_faults > .fault').children[0].value : "", 
+            },
+            visitor: {
+              time:document.querySelector('#local_faults').children.length != 0 ? document.querySelector('#local_faults > .fault').children[0].value : "",
+            }
+          },
+          situtation: await state(document.querySelector('#visitor_faults').attributes['count'].value, document.querySelector('#local_faults').attributes['count'].value,document.querySelector('#period_selector').value),
+            saques:{
+              local:document.querySelector('#saques_local').value,
+              visitante:document.querySelector('#saques_visitante').value,
+            }
+        }
+        const req =  await fetch('/update', {
+          method: 'POST',
+          headers:{
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+      }
+
+      document.body.onload = async () => {
+        document.querySelectorAll('.score_button').forEach(button => {
+          button.addEventListener('click', () => {
+            const team = button.attributes['team'].value;
+            const value = button.attributes['value'].value;
+            if (document.querySelector(`#${team}_score`).value > 0 || value != '-1') {
+              document.querySelector(`#${team}_score`).value = Number(document.querySelector(
+                  `#${team}_score`)
+                .value) + Number(value);
+            }
+          })
+        })
+        document.querySelector('#time_toggle').addEventListener('click', () => {
+          if (document.querySelector('#time_toggle').attributes['value'].value == 'active') document
+            .querySelector('#time_toggle').attributes['value'].value = 'paused'
+          else if (document.querySelector('#time_toggle').attributes['value'].value == 'paused') document
+            .querySelector('#time_toggle').attributes['value'].value = 'active'
+        })
+        document.querySelector('#clock_reset').addEventListener('click', () => {
+          document.querySelector('#clock').value = "25:00";
+          document.querySelector('#time_toggle').attributes['value'].value = 'paused'
+        })
+        document.querySelectorAll('.add_faults').forEach((div) => {
+          div.addEventListener('click', () => {
+            const team = div.attributes['team'].value;
+            const count = document.querySelector(`#${team}_faults`).attributes['count'].value;
+            if (Number(document.querySelector(`#${team}_faults`).attributes['count'].value) < 2) {
+              document.querySelector(`#${team}_faults`).innerHTML += `<div class="fault" team="${team}">
+              <input type="text" class="fault_time" team="${team}" value="02:00">
+              <button onclick="delete_fault(${count})" id="f${count}"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="cross_fault"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg></button>
+            </div>`
+              document.querySelector(`#${team}_faults`).attributes['count'].value = Number(document
+                .querySelector(`#${team}_faults`).attributes['count'].value) + 1
+            }
+          })
+        })
+
+
+        setInterval(() => {
+          if (document.querySelector('#time_toggle').attributes['value'].value == "active") {
+            const time = document.querySelector('#clock').value.split(':')
+            if ((Number(time[0]) + Number(time[1])) != 0) {
+              if (time[1] > 0) {
+                time[1] = Number(time[1]) - 1;
+              } else {
+                time[1] = 59;
+                time[0] = Number(time[0]) - 1;
+              }
+
+              document.querySelector('#clock').value = `${time[0]}:${time[1]<10 ? "0"+time[1] : time[1]}`
+            } else {
+              document.querySelector('#clock').value = "00:00"
+            }
+            document.querySelectorAll('.fault_time').forEach((div) => {
+              const time = div.value.split(':')
+              if ((Number(time[0]) + Number(time[1])) != 0) {
+                if (time[1] > 0) {
+                  time[1] = Number(time[1]) - 1;
+                } else {
+                  time[1] = 59;
+                  time[0] = Number(time[0]) - 1;
+                }
+                div.attributes['value'].value = `0${Number(time[0])}:${time[1]<10 ? "0"+time[1] : time[1]}`
+              } else {
+                div.parentElement.remove(div.parentElement)
+              }
+            });
+          }
+          data()
+        }, 1000)
+      }
+    </script>
 </body>
+
 </html>
+ 
+
