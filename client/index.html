@@ -391,7 +391,7 @@
       }
       async function state(local, visitor, period){
         if (period == "PR"){
-          if((Number(local) == 1 || Number(visitor) == 1) && Number(local) != Number(visitor) && (Number(local) == 0 || Number(visitor) == 0)){
+          if((Number(local) == 0 || Number(visitor) == 1) && Number(local) != Number(visitor) && (Number(local) == 0 || Number(visitor) == 0)){
             return "POWERPLAY"
           }else if(Number(local) == 2 && Number(visitor) == 0){
             return "2 vs 4"

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            background-color: greenyellow;
+        }
+        .title{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 800;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 1000px;
+            animation: .8s ease-in-out 0s 1 display;
+        }
+        .names{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            max-width: 1000px;
+            margin-bottom: 100px;
+            animation: .5s ease-in-out .3s 1 display;
+        }
+        .side{
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-weight: 600;
+            margin: 10px 10px;
+            
+        }
+        #visitor{
+            justify-content: flex-end;
+        }
+        .gragph{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            animation: .5s ease-in-out .3s 1 display;
+        }
+        .left, .right{
+            height: 40px;
+           
+            animation: .3s ease-in-out .9s 1 generate;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            color: white;
+            font-weight: 900;
+            font-size: 30px;
+        }
+        .left{
+            background-color: rgb(36, 36, 225);
+            width: 400px;
+            transform-origin: 0% 50%;
+            justify-content: flex-end;
+            padding-right: 20px;
+        }
+        #number1{
+            width: 100%;
+            text-align: right;
+        }
+        #number2{
+            width: 100%;
+            text-align: left;
+        }
+        .right{
+            background-color: rgb(100, 100, 100);
+            width: 600px;
+            transform-origin: 100% 50%;
+            padding-left: 15px; 
+            justify-content: flex-start;
+        }
+        .left::before{
+            content: ' ';
+            width: 5px;
+            background-color: black;
+            height: 50px;
+        }
+        .right::after{
+            content: ' ';
+            width: 5px;
+            background-color: black;
+            height: 50px;
+        }
+        @keyframes generate {
+            0% {
+                transform: scaleX(0)
+            }
+            100% {
+                transform: scaleX(100%)
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <span id="title">POSESION 1ªPARTE</span>
+        </div>
+        <div class="gragph">
+            <div class="left">
+                <span id="number1" class="number">40%</span>
+            </div>
+            <div class="right">
+                <span id="number2" class="number">60%</span>
+            </div>
+        </div>
+        <div class="names">
+            <div class="side" id="local">CAJA RURAL CPLV</div>
+            <div class="side" id="visitor">CLUB MOLINA SPORT ACGEC</div>
+        </div>
+    </div>
+    <script>
+        const params = new URLSearchParams(location.search)
+        document.querySelector('#title').textContent = params.get('title')
+        document.querySelector('#visitor').textContent = params.get('visitor')
+        document.querySelector('#local').textContent = params.get('local')
+        document.querySelector('#number1').textContent  =params.get('local_p')+'%'
+        document.querySelector('#number2').textContent  =params.get('visitor_p')+'%'
+        const local_p = Number(params.get('local_p'));
+        const visitor_p = Number(params.get('visitor_p'));
+        if (local_p < 50 && visitor_p < 50){
+            if(local_p > visitor_p){
+                const diference = local_p - visitor_p;
+                document.querySelector('.left').style.width = 500 + diference + 'px'
+                document.querySelector('.right').style.width = 500 - diference + 'px'
+            }else if(local_p < visitor_p){
+                const diference =  visitor_p - local_p;
+                document.querySelector('.left').style.width = 500 - diference + 'px'
+                document.querySelector('.right').style.width = 500 +  diference + 'px'
+            }
+        }else{
+            document.querySelector('.left').style.width = params.get('local_p')*10+'px'
+            document.querySelector('.right').style.width = params.get('visitor_p')*10+'px'
+        }
+        
+    </script>
+</body>
+</html>

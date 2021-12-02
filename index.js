@@ -52,6 +52,14 @@ app.post('/update',(req,res) => {
   res.send('OK')
 })
 
+app.get('/v2',(req,res) =>{
+  res.sendFile(__dirname+'/v2/index.html')
+})
+
+app.get('/felipe',(req,res) =>{
+  res.sendFile(__dirname+'/felipe_deja_de_llorar/index.html')
+})
+
 app.listen(port, ()=>{
   console.log(`App listening on http://localhost:${port}`);
 })
